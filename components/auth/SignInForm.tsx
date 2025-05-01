@@ -3,37 +3,34 @@ import React, { useState } from 'react';
 import Input from '../shared/Input';
 import Button from '../shared/Button';
 import { useFormik } from 'formik';
-import { TSignUpFormFields } from './types';
-import { signupFields } from './constants';
-import { signUpValidationSchema } from './validations';
-import { signUp } from '@/lib/auth-client';
+import { TSignInFormFields } from './types';
+import { signInFields } from './constants';
+import { signInValidationSchema } from './validations';
+import { signIn } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
-const SignUpForm = () => {
+const SignInForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const formik = useFormik<TSignUpFormFields>({
-    validationSchema: signUpValidationSchema,
+  const formik = useFormik<TSignInFormFields>({
+    validationSchema: signInValidationSchema,
     validateOnChange: false,
     initialValues: {
       email: '',
-      password: '',
-      name: '',
-      confirmPassword: ''
+      password: ''
     },
     onSubmit: data => {
       setIsLoading(true);
-      signUp.email(
+      signIn.email(
         {
           email: data.email,
-          name: data.name,
           password: data.password
         },
         {
           onSuccess: () => {
             setIsLoading(false);
-            toast.success('Your profile was created successfully!');
+            toast.success("You're logged in successfully!");
             router.push('/');
           },
           onError: e => {
@@ -46,8 +43,8 @@ const SignUpForm = () => {
   });
   return (
     <form onSubmit={formik.handleSubmit} className="w-11/12 lg:w-max p-8 rounded-lg shadow flex flex-col gap-4 bg-dark">
-      <h1 className="text-lg  w-full text-center">Sign up</h1>
-      {signupFields.map(item => (
+      <h1 className="text-lg  w-full text-center">Sign In</h1>
+      {signInFields.map(item => (
         <Input
           key={item.name}
           name={item.name}
@@ -68,4 +65,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default SignInForm;

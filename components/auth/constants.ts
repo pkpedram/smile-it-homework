@@ -1,6 +1,6 @@
 import { TAuthFieldItem } from './types';
 
-export const signupFields: TAuthFieldItem[] = [
+export const signupFields: TAuthFieldItem<'signUp'>[] = [
   {
     title: 'Your name',
     name: 'name',
@@ -22,6 +22,21 @@ export const signupFields: TAuthFieldItem[] = [
   {
     title: 'Confirm Password',
     name: 'confirmPassword',
+    placeholder: '*****',
+    type: 'password'
+  }
+];
+
+export const signInFields: TAuthFieldItem<'signIn'>[] = [
+  {
+    title: 'Your email',
+    name: 'email',
+    placeholder: 'Johndoe@smileit.uk',
+    type: 'text'
+  },
+  {
+    title: 'Your Password',
+    name: 'password',
     placeholder: '*****',
     type: 'password'
   }
