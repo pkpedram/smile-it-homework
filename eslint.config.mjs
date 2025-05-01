@@ -25,7 +25,6 @@ const eslintConfig = [
       "no-console": ["error", { allow: ["warn", "error"] }],
       "no-debugger": "error",
       "no-use-before-define": "error",
-      "@next/next/no-img-element": "on",
       "no-undef": "error",
       "react/jsx-key": "off",
     },
